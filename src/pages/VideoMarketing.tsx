@@ -1,4 +1,4 @@
-import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, TierCard } from "../shared";
+import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, TierCard, AddOnsBar, CustomBuildSection } from "../shared";
 import { useState } from "react";
 
 // ─── Funnel stage card ───
@@ -241,8 +241,15 @@ const VideoMarketing = ({ setPage }: { setPage: (p: string) => void }) => (
             />
           </R>
         </div>
+
+        <R delay={0.3}>
+          <AddOnsBar addOns={["Extra Short-Form Videos", "Extra Long-Form Videos"]} />
+        </R>
       </div>
     </section>
+
+    {/* ── CUSTOM BUILD ── */}
+    <CustomBuildSection onContact={() => setPage("contact")} />
 
     {/* ── SERVICES GRID ── */}
     <section style={{ background: C.lightCream, padding: "clamp(60px, 12vw, 120px) 20px" }}>

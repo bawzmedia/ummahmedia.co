@@ -1,4 +1,4 @@
-import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA } from "../shared";
+import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, CustomBuildSection } from "../shared";
 import { useState } from "react";
 
 // ─── Session card (upcoming events) ───
@@ -299,6 +299,9 @@ const AIEducation = ({ setPage }: { setPage: (p: string) => void }) => (
         </div>
       </div>
     </section>
+
+    {/* ── CUSTOM BUILD ── */}
+    <CustomBuildSection onContact={() => setPage("contact")} />
 
     {/* ── CTA ── */}
     <BottomCTA

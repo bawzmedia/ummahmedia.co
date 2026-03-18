@@ -1,4 +1,4 @@
-import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, TierCard } from "../shared";
+import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, TierCard, AddOnsBar, CustomBuildSection } from "../shared";
 
 const BrandDevelopment = ({ setPage }: { setPage: (p: string) => void }) => (
   <div>
@@ -132,8 +132,15 @@ const BrandDevelopment = ({ setPage }: { setPage: (p: string) => void }) => (
             />
           </R>
         </div>
+
+        <R delay={0.3}>
+          <AddOnsBar addOns={["Extra Videos", "Extra Graphics", "Additional Landing Pages", "Additional Email Sequences", "Brand Collateral Pack"]} />
+        </R>
       </div>
     </section>
+
+    {/* ── CUSTOM BUILD ── */}
+    <CustomBuildSection onContact={() => setPage("contact")} />
 
     {/* ── WHAT WE BUILD (the full spectrum) ── */}
     <section style={{ background: C.cream, padding: "clamp(60px, 12vw, 120px) 20px" }}>

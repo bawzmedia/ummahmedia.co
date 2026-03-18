@@ -1,4 +1,4 @@
-import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA } from "../shared";
+import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, CustomBuildSection } from "../shared";
 import { useState } from "react";
 
 // ─── Module card (unique to SmartSuite) ───
@@ -230,6 +230,9 @@ const SmartSuite = ({ setPage }: { setPage: (p: string) => void }) => (
         <StepItem step="→" title="ANYONE TIRED OF DISCONNECTED TOOLS" desc="Your CRM doesn't talk to your website. Your chatbot doesn't know your services. Your clients have no visibility. SmartSuite connects everything." isLast />
       </div>
     </section>
+
+    {/* ── CUSTOM BUILD ── */}
+    <CustomBuildSection onContact={() => setPage("contact")} />
 
     {/* ── CTA ── */}
     <BottomCTA

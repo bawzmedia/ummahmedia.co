@@ -479,6 +479,60 @@ export const TierCard = ({ tier, label, items, highlight = false }: {
   );
 };
 
+// ─── Add-Ons bar for tiered service pages ───
+export const AddOnsBar = ({ addOns }: { addOns: string[] }) => (
+  <div style={{
+    marginTop: "24px",
+    padding: "24px 28px",
+    background: C.white,
+    border: `1px solid ${C.goldDim}`,
+  }}>
+    <span style={{
+      fontFamily: "'DM Sans', sans-serif",
+      fontSize: "11px", letterSpacing: "2px",
+      color: C.gold, textTransform: "uppercase",
+      display: "block", marginBottom: "14px",
+    }}>
+      Available Add-Ons
+    </span>
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+      {addOns.map((a, i) => (
+        <span key={i} style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: "12px", color: C.textMid,
+          background: C.goldDim,
+          padding: "6px 14px",
+        }}>
+          {a}
+        </span>
+      ))}
+    </div>
+  </div>
+);
+
+// ─── Custom Build section (shared across all service pages) ───
+export const CustomBuildSection = ({ onContact }: { onContact: () => void }) => (
+  <section style={{
+    background: `linear-gradient(180deg, ${C.cream}, ${C.greenLight}, ${C.cream})`,
+    padding: "clamp(60px, 10vw, 100px) 20px", textAlign: "center",
+  }}>
+    <R>
+      <Tag>Across All Services</Tag>
+      <BigText size="clamp(28px, 6vw, 64px)" style={{ marginBottom: "20px" }}>
+        CUSTOM <span style={{ color: C.gold }}>BUILD</span>
+      </BigText>
+    </R>
+    <R delay={0.1}>
+      <Sub style={{ margin: "0 auto 16px", textAlign: "center", maxWidth: "600px" }}>
+        Not sure which tier fits? Our AI-powered package builder discovers your needs, suggests the right packages, compares pricing, and advocates for you — so you get exactly what your business needs, nothing more.
+      </Sub>
+    </R>
+    <R delay={0.2}>
+      <CTA onClick={onContact}>BUILD YOUR CUSTOM PACKAGE</CTA>
+    </R>
+  </section>
+);
+
 // ─── Feature card for service pages ───
 export const FeatureCard = ({ number, title, description }: { number: string; title: string; description: string }) => {
   const [h, setH] = useState(false);

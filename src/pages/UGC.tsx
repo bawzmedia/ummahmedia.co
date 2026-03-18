@@ -1,4 +1,4 @@
-import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, TierCard } from "../shared";
+import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, TierCard, AddOnsBar, CustomBuildSection } from "../shared";
 import { useState } from "react";
 
 // ─── Format card ───
@@ -178,8 +178,15 @@ const UGC = ({ setPage }: { setPage: (p: string) => void }) => (
             />
           </R>
         </div>
+
+        <R delay={0.3}>
+          <AddOnsBar addOns={["Custom AI Influencer Design", "Extra Real Influencers", "Additional Campaigns"]} />
+        </R>
       </div>
     </section>
+
+    {/* ── CUSTOM BUILD ── */}
+    <CustomBuildSection onContact={() => setPage("contact")} />
 
     {/* ── THE INFLUENCER AGENCY ── */}
     <section style={{ background: C.cream, padding: "clamp(60px, 12vw, 120px) 20px" }}>
