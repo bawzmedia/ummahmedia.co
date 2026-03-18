@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { IslamicPattern, GoldRays } from "./backgrounds";
 
 // ─── Logo ───
 export const LOGO_URL = "/ummah-media-logo-v2.png";
@@ -224,26 +225,30 @@ export const Grain = () => (
 );
 
 // ─── Service page hero (standardized across all pages) ───
-export const ServiceHero = ({ tag, titleLine1, titleLine2, subtitle }: { tag: string; titleLine1: React.ReactNode; titleLine2: React.ReactNode; subtitle: string }) => (
-  <section style={{
-    minHeight: "85vh", display: "flex", alignItems: "flex-end",
-    background: `radial-gradient(ellipse at 25% 35%, ${C.greenDim}, transparent 50%), radial-gradient(ellipse at 75% 65%, rgba(201,169,97,0.04), transparent 40%), ${C.lightCream}`,
-    padding: "120px 20px 60px", position: "relative",
-  }}>
-    <div style={{ maxWidth: "1400px", margin: "0 auto", width: "100%" }}>
-      <R>
-        <Tag>{tag}</Tag>
-        <BigText size="clamp(42px, 11vw, 130px)">
-          {titleLine1}<br />
-          {titleLine2}
-        </BigText>
-      </R>
-      <R delay={0.15}>
-        <Sub style={{ marginTop: "24px", maxWidth: "560px", fontSize: "clamp(14px, 3.5vw, 16px)" }}>{subtitle}</Sub>
-      </R>
-    </div>
-  </section>
-);
+export const ServiceHero = ({ tag, titleLine1, titleLine2, subtitle }: { tag: string; titleLine1: React.ReactNode; titleLine2: React.ReactNode; subtitle: string }) => {
+  return (
+    <section style={{
+      minHeight: "85vh", display: "flex", alignItems: "flex-end",
+      background: `radial-gradient(ellipse at 25% 35%, ${C.greenDim}, transparent 50%), radial-gradient(ellipse at 75% 65%, rgba(201,169,97,0.04), transparent 40%), ${C.lightCream}`,
+      padding: "120px 20px 60px", position: "relative", overflow: "hidden",
+    }}>
+      <IslamicPattern opacity={0.04} />
+      <GoldRays opacity={0.06} />
+      <div style={{ maxWidth: "1400px", margin: "0 auto", width: "100%", position: "relative", zIndex: 1 }}>
+        <R>
+          <Tag>{tag}</Tag>
+          <BigText size="clamp(42px, 11vw, 130px)">
+            {titleLine1}<br />
+            {titleLine2}
+          </BigText>
+        </R>
+        <R delay={0.15}>
+          <Sub style={{ marginTop: "24px", maxWidth: "560px", fontSize: "clamp(14px, 3.5vw, 16px)" }}>{subtitle}</Sub>
+        </R>
+      </div>
+    </section>
+  );
+};
 
 // ─── "In Simple Terms" definition bar ───
 export const Definition = ({ term, definition }: { term: string; definition: string }) => (
@@ -360,14 +365,14 @@ export const StepItem = ({ step, title, desc, isLast = false }: { step: string; 
 );
 
 // ─── Insight callout ───
-export const Insight = ({ emoji, text }: { emoji: string; text: string }) => (
+export const Insight = ({ emoji, text }: { emoji: React.ReactNode; text: string }) => (
   <div style={{
     display: "flex", gap: "16px", alignItems: "flex-start",
     padding: "20px 24px",
     background: C.goldDim,
     borderLeft: `3px solid ${C.gold}`,
   }}>
-    <span style={{ fontSize: "20px", lineHeight: 1 }}>{emoji}</span>
+    <span style={{ fontSize: "20px", lineHeight: 1, flexShrink: 0 }}>{emoji}</span>
     <p style={{
       fontFamily: "'DM Sans', sans-serif",
       fontSize: "14px", color: C.textDark,
@@ -381,24 +386,29 @@ export const Insight = ({ emoji, text }: { emoji: string; text: string }) => (
 // ─── Bottom CTA section (standardized) ───
 export const BottomCTA = ({ title, highlight, subtitle, buttonText, onButtonClick }: {
   title: string; highlight: string; subtitle: string; buttonText: string; onButtonClick: () => void;
-}) => (
-  <section style={{
-    background: `linear-gradient(180deg, ${C.lightCream}, ${C.greenLight}, ${C.lightCream})`,
-    padding: "clamp(80px, 15vw, 140px) 20px", textAlign: "center",
-  }}>
-    <R>
-      <BigText size="clamp(28px, 7vw, 80px)" style={{ marginBottom: "20px" }}>
-        {title} <span style={{ color: C.gold }}>{highlight}</span>
-      </BigText>
-    </R>
-    <R delay={0.15}>
-      <Sub style={{ margin: "0 auto 36px", textAlign: "center", maxWidth: "480px" }}>{subtitle}</Sub>
-    </R>
-    <R delay={0.25}>
-      <CTA onClick={onButtonClick}>{buttonText}</CTA>
-    </R>
-  </section>
-);
+}) => {
+  return (
+    <section style={{
+      background: `linear-gradient(180deg, ${C.lightCream}, ${C.greenLight}, ${C.lightCream})`,
+      padding: "clamp(80px, 15vw, 140px) 20px", textAlign: "center",
+      position: "relative", overflow: "hidden",
+    }}>
+      <IslamicPattern opacity={0.03} />
+      <GoldRays opacity={0.04} />
+      <R>
+        <BigText size="clamp(28px, 7vw, 80px)" style={{ marginBottom: "20px" }}>
+          {title} <span style={{ color: C.gold }}>{highlight}</span>
+        </BigText>
+      </R>
+      <R delay={0.15}>
+        <Sub style={{ margin: "0 auto 36px", textAlign: "center", maxWidth: "480px" }}>{subtitle}</Sub>
+      </R>
+      <R delay={0.25}>
+        <CTA onClick={onButtonClick}>{buttonText}</CTA>
+      </R>
+    </section>
+  );
+};
 
 // ─── Tier card for service pages (Foundation / Signature / Flagship) ───
 export const TierCard = ({ tier, label, items, highlight = false }: {
@@ -511,11 +521,14 @@ export const AddOnsBar = ({ addOns }: { addOns: string[] }) => (
 );
 
 // ─── Custom Build section (shared across all service pages) ───
-export const CustomBuildSection = ({ onContact }: { onContact: () => void }) => (
+export const CustomBuildSection = ({ onContact }: { onContact: () => void }) => {
+  return (
   <section style={{
     background: `linear-gradient(180deg, ${C.cream}, ${C.greenLight}, ${C.cream})`,
     padding: "clamp(60px, 10vw, 100px) 20px", textAlign: "center",
+    position: "relative", overflow: "hidden",
   }}>
+    <IslamicPattern opacity={0.035} />
     <R>
       <Tag>Across All Services</Tag>
       <BigText size="clamp(28px, 6vw, 64px)" style={{ marginBottom: "20px" }}>
@@ -531,7 +544,8 @@ export const CustomBuildSection = ({ onContact }: { onContact: () => void }) => 
       <CTA onClick={onContact}>BUILD YOUR CUSTOM PACKAGE</CTA>
     </R>
   </section>
-);
+  );
+};
 
 // ─── Feature card for service pages ───
 export const FeatureCard = ({ number, title, description }: { number: string; title: string; description: string }) => {

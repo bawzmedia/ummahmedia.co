@@ -1,4 +1,5 @@
 import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, TierCard, AddOnsBar, CustomBuildSection } from "../shared";
+import { InsightKeyIcon, InsightChartIcon, InsightTargetIcon } from "../icons";
 
 const BrandDevelopment = ({ setPage }: { setPage: (p: string) => void }) => (
   <div>
@@ -46,7 +47,7 @@ const BrandDevelopment = ({ setPage }: { setPage: (p: string) => void }) => (
               </Sub>
               <div style={{ marginTop: "28px" }}>
                 <Insight
-                  emoji="🔑"
+                  emoji={<InsightKeyIcon size={24} color={C.gold} />}
                   text="Most businesses don't need a full rebrand. They need a marketing generalist who can see the full picture and fill the gaps. That's us."
                 />
               </div>
@@ -160,7 +161,7 @@ const BrandDevelopment = ({ setPage }: { setPage: (p: string) => void }) => (
         </R>
         <R delay={0.1}>
           <Insight
-            emoji="🏗️"
+            emoji={<InsightChartIcon size={24} color={C.gold} />}
             text="We don't force you into a package. We audit your brand, identify what's underdeveloped, and build exactly what you need — nothing more, nothing less."
           />
         </R>
@@ -193,7 +194,7 @@ const BrandDevelopment = ({ setPage }: { setPage: (p: string) => void }) => (
 
         <R>
           <Insight
-            emoji="📋"
+            emoji={<InsightTargetIcon size={24} color={C.gold} />}
             text="We don't start with design. We start with diagnosis. Every brand development project begins with understanding what you actually need — then we build a custom scope around that."
           />
         </R>

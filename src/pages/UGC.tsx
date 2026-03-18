@@ -1,9 +1,10 @@
 import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, TierCard, AddOnsBar, CustomBuildSection } from "../shared";
+import { ProblemSolutionIcon, TestimonialIcon, UnboxingIcon, HowToIcon, DayInLifeIcon, InsightBrainIcon, InsightPuzzleIcon } from "../icons";
 import { useState } from "react";
 
 // ─── Format card ───
 const FormatCard = ({ icon, title, description, bestFor }: {
-  icon: string; title: string; description: string; bestFor: string;
+  icon: React.ReactNode; title: string; description: string; bestFor: string;
 }) => {
   const [h, setH] = useState(false);
   return (
@@ -20,7 +21,7 @@ const FormatCard = ({ icon, title, description, bestFor }: {
         transform: h ? "translateY(-4px)" : "translateY(0)",
       }}
     >
-      <span style={{ fontSize: "32px", marginBottom: "16px" }}>{icon}</span>
+      <span style={{ marginBottom: "16px", color: C.gold }}>{icon}</span>
       <h3 style={{
         fontFamily: "'Bebas Neue', sans-serif",
         fontSize: "26px", letterSpacing: "2px",
@@ -94,7 +95,7 @@ const UGC = ({ setPage }: { setPage: (p: string) => void }) => (
               </Sub>
               <div style={{ marginTop: "28px" }}>
                 <Insight
-                  emoji="🧠"
+                  emoji={<InsightBrainIcon size={24} color={C.gold} />}
                   text="The brain processes UGC and influencer recommendations in its 'trust' network — the same circuitry as personal recommendations from friends. Ads go through the 'skepticism' filter. That's the difference."
                 />
               </div>
@@ -206,7 +207,7 @@ const UGC = ({ setPage }: { setPage: (p: string) => void }) => (
         </R>
         <R delay={0.1}>
           <Insight
-            emoji="🤝"
+            emoji={<InsightPuzzleIcon size={24} color={C.gold} />}
             text="For businesses: we match you with the right creators for your brand. For creators: we get you paid partnerships with businesses that align with your values. Everyone wins."
           />
         </R>
@@ -247,11 +248,11 @@ const UGC = ({ setPage }: { setPage: (p: string) => void }) => (
 
         <div className="grid-cards-sm">
           {[
-            { icon: "🔄", title: "PROBLEM → SOLUTION", description: "Start with a pain point, reveal the solution. The most powerful UGC format because it mirrors the viewer's own thought process.", bestFor: "Products that solve clear problems" },
-            { icon: "🗣️", title: "TESTIMONIAL", description: "Real customers sharing genuine experiences. Unscripted authenticity is what makes this convert — you can't fake real satisfaction.", bestFor: "Services & high-trust purchases" },
-            { icon: "📦", title: "UNBOXING / FIRST LOOK", description: "The excitement of receiving and trying something for the first time. Viewers experience the product vicariously through someone they trust.", bestFor: "Physical products & e-commerce" },
-            { icon: "🎓", title: "HOW-TO / TUTORIAL", description: "Real users demonstrating your product in their daily life. Builds credibility through demonstrated knowledge, not scripted claims.", bestFor: "Products with learning curves" },
-            { icon: "☀️", title: "DAY-IN-THE-LIFE", description: "Lifestyle content where your brand appears naturally in someone's routine. Not the focus — part of a life the viewer aspires to.", bestFor: "Lifestyle brands & recurring purchases" },
+            { icon: <ProblemSolutionIcon size={32} />, title: "PROBLEM → SOLUTION", description: "Start with a pain point, reveal the solution. The most powerful UGC format because it mirrors the viewer's own thought process.", bestFor: "Products that solve clear problems" },
+            { icon: <TestimonialIcon size={32} />, title: "TESTIMONIAL", description: "Real customers sharing genuine experiences. Unscripted authenticity is what makes this convert — you can't fake real satisfaction.", bestFor: "Services & high-trust purchases" },
+            { icon: <UnboxingIcon size={32} />, title: "UNBOXING / FIRST LOOK", description: "The excitement of receiving and trying something for the first time. Viewers experience the product vicariously through someone they trust.", bestFor: "Physical products & e-commerce" },
+            { icon: <HowToIcon size={32} />, title: "HOW-TO / TUTORIAL", description: "Real users demonstrating your product in their daily life. Builds credibility through demonstrated knowledge, not scripted claims.", bestFor: "Products with learning curves" },
+            { icon: <DayInLifeIcon size={32} />, title: "DAY-IN-THE-LIFE", description: "Lifestyle content where your brand appears naturally in someone's routine. Not the focus — part of a life the viewer aspires to.", bestFor: "Lifestyle brands & recurring purchases" },
           ].map((item, i) => (
             <R key={i} delay={i * 0.08}>
               <FormatCard {...item} />

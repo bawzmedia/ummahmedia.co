@@ -1,4 +1,5 @@
 import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, TierCard, AddOnsBar, CustomBuildSection } from "../shared";
+import { InsightMoneyIcon, InsightTargetIcon, InsightChartIcon } from "../icons";
 
 const SocialMedia = ({ setPage }: { setPage: (p: string) => void }) => (
   <div>
@@ -46,7 +47,7 @@ const SocialMedia = ({ setPage }: { setPage: (p: string) => void }) => (
               </Sub>
               <div style={{ marginTop: "28px" }}>
                 <Insight
-                  emoji="💰"
+                  emoji={<InsightMoneyIcon size={24} color={C.gold} />}
                   text="We measure success in dollars generated and partnerships formed — not likes, comments, or follower count. Those are byproducts, not goals."
                 />
               </div>
@@ -156,7 +157,7 @@ const SocialMedia = ({ setPage }: { setPage: (p: string) => void }) => (
         </R>
         <R delay={0.1}>
           <Insight
-            emoji="🚫"
+            emoji={<InsightTargetIcon size={24} color={C.gold} />}
             text="We don't do: random motivational quotes, posting for the sake of posting, vanity metric reports, or generic content calendars. We do: strategy that generates revenue."
           />
         </R>
@@ -189,7 +190,7 @@ const SocialMedia = ({ setPage }: { setPage: (p: string) => void }) => (
 
         <R>
           <Insight
-            emoji="📊"
+            emoji={<InsightChartIcon size={24} color={C.gold} />}
             text="We start by understanding your business — not your Instagram. Social media is a channel, not a strategy. The strategy comes from your revenue goals."
           />
         </R>

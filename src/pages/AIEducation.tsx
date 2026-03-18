@@ -1,4 +1,5 @@
 import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, CustomBuildSection } from "../shared";
+import { InsightLightbulbIcon, InsightPuzzleIcon } from "../icons";
 import { useState } from "react";
 
 // ─── Session card (upcoming events) ───
@@ -146,7 +147,7 @@ const AIEducation = ({ setPage }: { setPage: (p: string) => void }) => (
               </Sub>
               <div style={{ marginTop: "28px" }}>
                 <Insight
-                  emoji="💡"
+                  emoji={<InsightLightbulbIcon size={24} color={C.gold} />}
                   text="You don't need to become a programmer or an AI expert. You just need to know which tools exist, what they're good at, and how to tell them what you need. That's what we teach."
                 />
               </div>
@@ -265,7 +266,7 @@ const AIEducation = ({ setPage }: { setPage: (p: string) => void }) => (
 
         <R>
           <Insight
-            emoji="🤝"
+            emoji={<InsightPuzzleIcon size={24} color={C.gold} />}
             text="Our programs are designed for people with zero technical background. If you can use a smartphone and send an email, you can learn AI. We meet you where you are."
           />
         </R>

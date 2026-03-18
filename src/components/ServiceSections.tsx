@@ -1,40 +1,37 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { GlowOrb } from './DynamicBackgrounds';
+import { BrandDevIcon, VideoMarketingIcon, SocialMediaIcon, UgcInfluencerIcon, SmartSuiteIcon, AiEducationIcon } from '../icons';
+
+const SERVICE_ICONS = [BrandDevIcon, VideoMarketingIcon, SocialMediaIcon, UgcInfluencerIcon, SmartSuiteIcon, AiEducationIcon];
 
 const SERVICES = [
   {
-    arabic: 'هوية',
     name: 'Brand Development',
     desc: 'Full brand build-out — strategy, visuals, content, and systems. Foundation, Signature, or Flagship tiers.',
     accent: 'green' as const,
   },
   {
-    arabic: 'فيديو',
     name: 'Video Marketing',
     desc: 'Cinematic brand films, short-form content, and event coverage — engineered for every stage of the funnel.',
     accent: 'gold' as const,
   },
   {
-    arabic: 'تواصل',
     name: 'Social Media Marketing',
     desc: 'Revenue-driven social media management. Strategy, content, community, and analytics — fully managed.',
     accent: 'green' as const,
   },
   {
-    arabic: 'مؤثر',
     name: 'UGC & Influencer Agency',
     desc: 'Muslim creators and UGC content that converts. Real influencers, AI influencers, and campaign management.',
     accent: 'gold' as const,
   },
   {
-    arabic: 'ذكي',
     name: 'SmartSuite',
     desc: 'AI-powered business systems — Smart Funnel, Smart Agent, Smart Site, Smart Project Media, and Smart Portal.',
     accent: 'green' as const,
   },
   {
-    arabic: 'تعليم',
     name: 'AI Education',
     desc: 'Courses, workshops, and custom AI tool development. From AI 101 to building your own AI agents.',
     accent: 'gold' as const,
@@ -84,10 +81,10 @@ export default function ServiceSections() {
               transition={{ delay: i * 0.07, duration: 0.5 }}
               className="group relative p-8 sm:p-10 bg-surface-light hover:bg-white transition-all duration-500 cursor-pointer border border-surface-sand/30"
             >
-              <div className={`font-arabic text-5xl mb-6 transition-transform duration-500 group-hover:scale-110 ${
+              <div className={`mb-6 transition-transform duration-500 group-hover:scale-110 ${
                 service.accent === 'gold' ? 'text-brand-gold' : 'text-brand-green'
               }`}>
-                {service.arabic}
+                {(() => { const Icon = SERVICE_ICONS[i]; return <Icon size={44} />; })()}
               </div>
               <h3 className="font-display text-lg font-semibold text-brand-green-dark mb-3">
                 {service.name}

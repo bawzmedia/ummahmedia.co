@@ -1,4 +1,5 @@
 import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, CustomBuildSection } from "../shared";
+import { SmartFunnelIcon, SmartAgentIcon, SmartSiteIcon, SmartMediaIcon, SmartPortalIcon, InsightPuzzleIcon, InsightLightbulbIcon } from "../icons";
 import { useState } from "react";
 
 // ─── Module card (unique to SmartSuite) ───
@@ -29,7 +30,7 @@ const ModuleCard = ({ icon, name, description, deliverables }: {
         opacity: h ? 1 : 0,
         transition: "opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
       }} />
-      <span style={{ fontSize: "32px", marginBottom: "16px" }}>{icon}</span>
+      <span style={{ marginBottom: "16px", color: C.gold }}>{icon}</span>
       <h3 style={{
         fontFamily: "'Bebas Neue', sans-serif",
         fontSize: "28px", letterSpacing: "2px",
@@ -108,7 +109,7 @@ const SmartSuite = ({ setPage }: { setPage: (p: string) => void }) => (
               </Sub>
               <div style={{ marginTop: "28px" }}>
                 <Insight
-                  emoji="🧩"
+                  emoji={<InsightPuzzleIcon size={24} color={C.gold} />}
                   text="You don't have to buy all five. Pick the modules you need now, and add more as you grow. Every module is designed to stand alone or plug into the rest."
                 />
               </div>
@@ -147,7 +148,7 @@ const SmartSuite = ({ setPage }: { setPage: (p: string) => void }) => (
         </R>
         <R delay={0.1}>
           <Insight
-            emoji="💡"
+            emoji={<InsightLightbulbIcon size={24} color={C.gold} />}
             text="Pricing is modular — you only pay for the modules you use. Each module has its own scope, deliverables, and timeline."
           />
         </R>
@@ -155,31 +156,31 @@ const SmartSuite = ({ setPage }: { setPage: (p: string) => void }) => (
         <div className="grid-cards" style={{ marginTop: "48px" }}>
           {[
             {
-              icon: "🎯",
+              icon: <SmartFunnelIcon size={36} />,
               name: "SMART FUNNEL",
               description: "A data-driven system that attracts prospects, qualifies them, captures their info, and improves targeting over time. Your always-on lead generation machine.",
               deliverables: ["Funnel design & architecture", "Landing pages", "Lead qualification logic", "Feedback loops", "Targeting optimization"],
             },
             {
-              icon: "🤖",
+              icon: <SmartAgentIcon size={36} />,
               name: "SMART AGENT",
               description: "An AI-powered agent (Voiceflow-based) that talks to your visitors, answers questions, qualifies leads, and routes them to the right place — 24/7.",
               deliverables: ["Agent design & personality", "Voiceflow implementation", "Website integration", "Lead qualification flows", "Knowledge base setup"],
             },
             {
-              icon: "🌐",
+              icon: <SmartSiteIcon size={36} />,
               name: "SMART SITE",
               description: "A premium, conversion-focused website that integrates with your AI agent and funnel. Not just a brochure — a business tool.",
               deliverables: ["Site design & development", "AI agent integration", "Funnel integration", "Mobile-responsive build", "SEO & analytics setup"],
             },
             {
-              icon: "🎬",
+              icon: <SmartMediaIcon size={36} />,
               name: "SMART PROJECT MEDIA",
               description: "A content engine that produces videos, visuals, and media assets designed to feed your other SmartSuite systems.",
               deliverables: ["Video assets", "Campaign visuals", "Project storytelling content", "Sales-support media"],
             },
             {
-              icon: "📊",
+              icon: <SmartPortalIcon size={36} />,
               name: "SMART PORTAL",
               description: "A client-facing dashboard where your customers can track progress, view metrics, access assets, and manage invoices.",
               deliverables: ["Portal dashboard", "Onboarding flow", "Progress tracking", "Metrics & reporting", "Asset library & payments"],
@@ -202,7 +203,7 @@ const SmartSuite = ({ setPage }: { setPage: (p: string) => void }) => (
 
         <R>
           <Insight
-            emoji="🔗"
+            emoji={<InsightPuzzleIcon size={24} color={C.gold} />}
             text="When you combine modules, they share data and workflows. A lead captured by Smart Funnel gets qualified by Smart Agent, converts on Smart Site, and gets onboarded through Smart Portal — automatically."
           />
         </R>

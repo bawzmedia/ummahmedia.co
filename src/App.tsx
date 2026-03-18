@@ -6,6 +6,7 @@ import UGC from "./pages/UGC";
 import AIEducation from "./pages/AIEducation";
 import SocialMedia from "./pages/SocialMedia";
 import SmartSuite from "./pages/SmartSuite";
+import { BrandDevIcon, VideoMarketingIcon, SocialMediaIcon, UgcInfluencerIcon, SmartSuiteIcon, AiEducationIcon, JustStartingIcon, GrowingIcon, RebuildingIcon, AsapIcon, MonthsIcon, FlexibleIcon, Budget1Icon, Budget2Icon, Budget3Icon, Budget4Icon } from "./icons";
 
 const PartnerGlobe = lazy(() => import("./components/PartnerGlobe"));
 
@@ -710,7 +711,7 @@ const About = ({ setPage }: { setPage: (p: string) => void }) => (
 // CONTACT — Interactive Project Builder
 // ═══════════════════════════════════════════
 const ChoiceCard = ({ label, desc, selected, onClick, icon }: {
-  label: string; desc: string; selected: boolean; onClick: () => void; icon: string;
+  label: string; desc: string; selected: boolean; onClick: () => void; icon: React.ReactNode;
 }) => (
   <button onClick={onClick} style={{
     background: selected ? C.gold : C.white,
@@ -724,7 +725,7 @@ const ChoiceCard = ({ label, desc, selected, onClick, icon }: {
     transform: selected ? "translateY(-3px) scale(1.02)" : "translateY(0) scale(1)",
     width: "100%",
   }}>
-    <span style={{ fontSize: "24px" }}>{icon}</span>
+    <span style={{ color: selected ? C.white : C.gold }}>{icon}</span>
     <span style={{
       fontFamily: "'Bebas Neue', sans-serif",
       fontSize: "20px", letterSpacing: "2px",
@@ -838,12 +839,12 @@ const Contact = ({ preselectedService = "" }: { preselectedService?: string }) =
                   </BigText>
                   <Sub style={{ marginBottom: "36px" }}>Pick the service that best matches your project. Don't worry — we can always adjust later.</Sub>
                   <div className="grid-choices">
-                    <ChoiceCard icon="🏗️" label="BRAND DEVELOPMENT" desc="Strategy, visuals, systems — build what's missing." selected={service === "brand"} onClick={() => setService("brand")} />
-                    <ChoiceCard icon="🎬" label="VIDEO MARKETING" desc="Videos that move hearts and drive results." selected={service === "video"} onClick={() => setService("video")} />
-                    <ChoiceCard icon="📱" label="SOCIAL MEDIA MARKETING" desc="Revenue-driven social. Partnerships & growth." selected={service === "social"} onClick={() => setService("social")} />
-                    <ChoiceCard icon="🗣️" label="UGC & INFLUENCER" desc="Muslim creators. Real influence. Real results." selected={service === "ugc"} onClick={() => setService("ugc")} />
-                    <ChoiceCard icon="🧩" label="SMARTSUITE" desc="AI-powered funnels, agents, sites & portals." selected={service === "smartsuite"} onClick={() => setService("smartsuite")} />
-                    <ChoiceCard icon="🤖" label="AI EDUCATION" desc="Practical AI skills for your team." selected={service === "ai"} onClick={() => setService("ai")} />
+                    <ChoiceCard icon={<BrandDevIcon size={28} />} label="BRAND DEVELOPMENT" desc="Strategy, visuals, systems — build what's missing." selected={service === "brand"} onClick={() => setService("brand")} />
+                    <ChoiceCard icon={<VideoMarketingIcon size={28} />} label="VIDEO MARKETING" desc="Videos that move hearts and drive results." selected={service === "video"} onClick={() => setService("video")} />
+                    <ChoiceCard icon={<SocialMediaIcon size={28} />} label="SOCIAL MEDIA MARKETING" desc="Revenue-driven social. Partnerships & growth." selected={service === "social"} onClick={() => setService("social")} />
+                    <ChoiceCard icon={<UgcInfluencerIcon size={28} />} label="UGC & INFLUENCER" desc="Muslim creators. Real influence. Real results." selected={service === "ugc"} onClick={() => setService("ugc")} />
+                    <ChoiceCard icon={<SmartSuiteIcon size={28} />} label="SMARTSUITE" desc="AI-powered funnels, agents, sites & portals." selected={service === "smartsuite"} onClick={() => setService("smartsuite")} />
+                    <ChoiceCard icon={<AiEducationIcon size={28} />} label="AI EDUCATION" desc="Practical AI skills for your team." selected={service === "ai"} onClick={() => setService("ai")} />
                   </div>
                 </div>
               )}
@@ -857,9 +858,9 @@ const Contact = ({ preselectedService = "" }: { preselectedService?: string }) =
                   </BigText>
                   <Sub style={{ marginBottom: "36px" }}>No judgment — just helps us understand where to start.</Sub>
                   <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                    <ChoiceCard icon="🌱" label="JUST STARTING" desc="I have an idea or a new business and need to build from scratch." selected={stage === "starting"} onClick={() => setStage("starting")} />
-                    <ChoiceCard icon="📈" label="GROWING" desc="I have a business running but need to level up my brand and marketing." selected={stage === "growing"} onClick={() => setStage("growing")} />
-                    <ChoiceCard icon="🔄" label="REBUILDING" desc="My brand exists but needs a serious overhaul — something feels off." selected={stage === "rebuilding"} onClick={() => setStage("rebuilding")} />
+                    <ChoiceCard icon={<JustStartingIcon size={28} />} label="JUST STARTING" desc="I have an idea or a new business and need to build from scratch." selected={stage === "starting"} onClick={() => setStage("starting")} />
+                    <ChoiceCard icon={<GrowingIcon size={28} />} label="GROWING" desc="I have a business running but need to level up my brand and marketing." selected={stage === "growing"} onClick={() => setStage("growing")} />
+                    <ChoiceCard icon={<RebuildingIcon size={28} />} label="REBUILDING" desc="My brand exists but needs a serious overhaul — something feels off." selected={stage === "rebuilding"} onClick={() => setStage("rebuilding")} />
                   </div>
                 </div>
               )}
@@ -873,9 +874,9 @@ const Contact = ({ preselectedService = "" }: { preselectedService?: string }) =
                   </BigText>
                   <Sub style={{ marginBottom: "36px" }}>This helps us plan capacity. We'll always confirm exact timelines later.</Sub>
                   <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                    <ChoiceCard icon="⚡" label="ASAP" desc="I need this done as soon as possible — days to 2 weeks." selected={timeline === "asap"} onClick={() => setTimeline("asap")} />
-                    <ChoiceCard icon="📅" label="1–3 MONTHS" desc="I have some time — let's do it properly." selected={timeline === "1-3"} onClick={() => setTimeline("1-3")} />
-                    <ChoiceCard icon="🌙" label="FLEXIBLE" desc="No rush — I want to take the time to get it right." selected={timeline === "flexible"} onClick={() => setTimeline("flexible")} />
+                    <ChoiceCard icon={<AsapIcon size={28} />} label="ASAP" desc="I need this done as soon as possible — days to 2 weeks." selected={timeline === "asap"} onClick={() => setTimeline("asap")} />
+                    <ChoiceCard icon={<MonthsIcon size={28} />} label="1–3 MONTHS" desc="I have some time — let's do it properly." selected={timeline === "1-3"} onClick={() => setTimeline("1-3")} />
+                    <ChoiceCard icon={<FlexibleIcon size={28} />} label="FLEXIBLE" desc="No rush — I want to take the time to get it right." selected={timeline === "flexible"} onClick={() => setTimeline("flexible")} />
                   </div>
                 </div>
               )}
@@ -889,10 +890,10 @@ const Contact = ({ preselectedService = "" }: { preselectedService?: string }) =
                   </BigText>
                   <Sub style={{ marginBottom: "36px" }}>Be honest — we work with real budgets. We'll always find a way to make it work In Shaa Allah.</Sub>
                   <div className="grid-choices">
-                    <ChoiceCard icon="💰" label="$500 – $2K" desc="Small but mighty. Let's make it count." selected={budget === "500-2k"} onClick={() => setBudget("500-2k")} />
-                    <ChoiceCard icon="💰💰" label="$2K – $5K" desc="Room to build something solid." selected={budget === "2k-5k"} onClick={() => setBudget("2k-5k")} />
-                    <ChoiceCard icon="💰💰💰" label="$5K – $15K" desc="Full scope. Full quality." selected={budget === "5k-15k"} onClick={() => setBudget("5k-15k")} />
-                    <ChoiceCard icon="🚀" label="$15K+" desc="Let's build something exceptional." selected={budget === "15k+"} onClick={() => setBudget("15k+")} />
+                    <ChoiceCard icon={<Budget1Icon size={28} />} label="$500 – $2K" desc="Small but mighty. Let's make it count." selected={budget === "500-2k"} onClick={() => setBudget("500-2k")} />
+                    <ChoiceCard icon={<Budget2Icon size={28} />} label="$2K – $5K" desc="Room to build something solid." selected={budget === "2k-5k"} onClick={() => setBudget("2k-5k")} />
+                    <ChoiceCard icon={<Budget3Icon size={28} />} label="$5K – $15K" desc="Full scope. Full quality." selected={budget === "5k-15k"} onClick={() => setBudget("5k-15k")} />
+                    <ChoiceCard icon={<Budget4Icon size={28} />} label="$15K+" desc="Let's build something exceptional." selected={budget === "15k+"} onClick={() => setBudget("15k+")} />
                   </div>
                 </div>
               )}

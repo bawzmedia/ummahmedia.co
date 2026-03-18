@@ -1,4 +1,5 @@
 import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA, TierCard, AddOnsBar, CustomBuildSection } from "../shared";
+import { InsightLightbulbIcon, InsightTargetIcon } from "../icons";
 import { useState } from "react";
 
 // ─── Funnel stage card ───
@@ -100,7 +101,7 @@ const VideoMarketing = ({ setPage }: { setPage: (p: string) => void }) => (
         </R>
         <R delay={0.1}>
           <Insight
-            emoji="💡"
+            emoji={<InsightLightbulbIcon size={24} color={C.gold} />}
             text="Think of it like a conversation. You wouldn't propose marriage on a first date. Short videos introduce you (TOFU). Medium videos build trust (MOFU). Long videos close the deal (BOFU)."
           />
         </R>
@@ -157,7 +158,7 @@ const VideoMarketing = ({ setPage }: { setPage: (p: string) => void }) => (
               </Sub>
               <div style={{ marginTop: "28px" }}>
                 <Insight
-                  emoji="🎯"
+                  emoji={<InsightTargetIcon size={24} color={C.gold} />}
                   text={"Great hooks signal value instantly. \"Here's how we doubled our client's revenue\" beats \"Hey everyone, welcome to our video\" every single time."}
                 />
               </div>
