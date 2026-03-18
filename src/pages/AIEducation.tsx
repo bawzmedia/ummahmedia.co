@@ -241,12 +241,12 @@ const AIEducation = ({ setPage }: { setPage: (p: string) => void }) => (
 
         <div className="grid-cards">
           {[
-            { number: "01", title: "AI FOR BUSINESS 101", description: "A beginner-friendly introduction for Muslim business owners. Identify your top 3 AI opportunities, learn the core tools, and leave with a 30-day action plan you can start implementing immediately." },
-            { number: "02", title: "AI CONTENT ENGINE", description: "Build a complete content production system powered by AI. Generate 30+ content ideas, create a monthly calendar, and learn to produce professional posts, videos, and copy 10× faster." },
-            { number: "03", title: "WORKFLOW AUTOMATION", description: "Hands-on workshop using Make.com and Zapier to automate your first business workflow. Stop doing repetitive tasks manually — let the machines handle scheduling, follow-ups, and data entry." },
-            { number: "04", title: "AI MARKETING MASTERY", description: "Advanced program on using AI for audience research, ad targeting, email automation, and data-driven decisions. Learn to run smarter campaigns that convert better with less budget." },
-            { number: "05", title: "BUILD A CUSTOM AI TOOL", description: "No-code workshop where you build a custom AI tool for your specific business in 3 hours. Custom GPTs, chatbots, and assistants — tailored to your workflow, not generic templates." },
-            { number: "06", title: "1-ON-1 AI CONSULTING", description: "Personalized sessions where we audit your business workflows and identify exactly where AI can save the most time and create the biggest impact. Custom strategy, not one-size-fits-all." },
+            { number: "01", title: "AI FOR BUSINESS 101", description: "Beginner course teaching business owners AI fundamentals and practical applications. In-person or virtual, up to 20 participants. Leave with a 30-day action plan you can implement immediately." },
+            { number: "02", title: "WORKFLOW AUTOMATION", description: "Learn to automate tasks using n8n, Zapier, and Make. Includes process audit, workflow design, implementation, and team training. Stop doing repetitive tasks manually." },
+            { number: "03", title: "AI MARKETING MASTERY", description: "Advanced training on AI-powered content creation, targeting, optimization, and predictive analytics. Prerequisite: basic digital marketing knowledge." },
+            { number: "04", title: "BUILD A CUSTOM AI TOOL", description: "We design and build a custom AI tool for your specific business needs. Includes requirements, design, development, testing, deployment, and training." },
+            { number: "05", title: "AI AGENT DEVELOPMENT", description: "Build AI agents for sales, customer support, or operations. Includes agent design, development, training, integration, deployment, and monitoring." },
+            { number: "06", title: "AI TRAINING & WORKSHOPS", description: "Hands-on group sessions customized to your team's skill level. Half-day, full-day, or multi-day formats. Up to 20 participants per session." },
           ].map((item, i) => (
             <R key={i} delay={i * 0.08}>
               <FeatureCard {...item} />

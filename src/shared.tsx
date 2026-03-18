@@ -400,6 +400,85 @@ export const BottomCTA = ({ title, highlight, subtitle, buttonText, onButtonClic
   </section>
 );
 
+// ─── Tier card for service pages (Foundation / Signature / Flagship) ───
+export const TierCard = ({ tier, label, items, highlight = false }: {
+  tier: string; label?: string; items: { name: string; detail?: string }[]; highlight?: boolean;
+}) => {
+  const [h, setH] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+      style={{
+        height: "100%", boxSizing: "border-box",
+        display: "flex", flexDirection: "column",
+        background: highlight ? (h ? "#FBF7EE" : "#FAF5E8") : (h ? C.white : C.card),
+        border: `2px solid ${highlight ? C.gold : (h ? C.gold : C.goldDim)}`,
+        padding: "40px 28px",
+        transition: "all 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+        boxShadow: h ? "0 16px 40px rgba(201,169,97,0.18)" : "0 2px 10px rgba(0,0,0,0.03)",
+        transform: h ? "translateY(-4px)" : "translateY(0)",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {highlight && (
+        <div style={{
+          position: "absolute", top: 0, left: 0, right: 0,
+          height: "4px",
+          background: `linear-gradient(90deg, ${C.gold}, ${C.green}, ${C.gold})`,
+        }} />
+      )}
+      {label && (
+        <span style={{
+          fontFamily: "'DM Sans', sans-serif",
+          fontSize: "10px", letterSpacing: "2px",
+          color: C.white, textTransform: "uppercase",
+          background: C.gold, padding: "4px 12px",
+          display: "inline-block", alignSelf: "flex-start",
+          marginBottom: "16px",
+        }}>
+          {label}
+        </span>
+      )}
+      <h3 style={{
+        fontFamily: "'Bebas Neue', sans-serif",
+        fontSize: "32px", letterSpacing: "2px",
+        color: C.textDark, marginBottom: "20px",
+      }}>
+        {tier}
+      </h3>
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px", flex: 1 }}>
+        {items.map((item, i) => (
+          <div key={i} style={{
+            display: "flex", alignItems: "flex-start", gap: "10px",
+            padding: "8px 0",
+            borderBottom: i < items.length - 1 ? `1px solid ${C.goldDim}` : "none",
+          }}>
+            <span style={{ color: C.gold, fontSize: "14px", lineHeight: 1.6, flexShrink: 0 }}>&#10003;</span>
+            <div>
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "13px", color: C.textDark, fontWeight: 600, lineHeight: 1.6,
+              }}>
+                {item.name}
+              </span>
+              {item.detail && (
+                <span style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "12px", color: C.textLight,
+                  display: "block", lineHeight: 1.5,
+                }}>
+                  {item.detail}
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 // ─── Feature card for service pages ───
 export const FeatureCard = ({ number, title, description }: { number: string; title: string; description: string }) => {
   const [h, setH] = useState(false);

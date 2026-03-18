@@ -5,6 +5,7 @@ import VideoMarketing from "./pages/VideoMarketing";
 import UGC from "./pages/UGC";
 import AIEducation from "./pages/AIEducation";
 import SocialMedia from "./pages/SocialMedia";
+import SmartSuite from "./pages/SmartSuite";
 
 const PartnerGlobe = lazy(() => import("./components/PartnerGlobe"));
 
@@ -48,6 +49,7 @@ const Nav = ({ page, setPage }: { page: string; setPage: (p: string) => void }) 
     { id: "video", label: "Video Marketing" },
     { id: "social", label: "Social Media Marketing" },
     { id: "ugc", label: "UGC & Influencer Agency" },
+    { id: "smartsuite", label: "SmartSuite" },
     { id: "ai", label: "AI Education" },
   ];
 
@@ -421,6 +423,7 @@ const Home = ({ setPage }: { setPage: (p: string) => void }) => (
 
         <div className="grid-services" style={{ marginTop: "4px" }}>
           {[
+            { title: "SMART\nSUITE", sub: "AI-powered funnels, agents, sites, media & portals.", page: "smartsuite" },
             { title: "AI\nEDUCATION", sub: "Empowering the Ummah with future-proof skills.", page: "ai" },
           ].map((s, i) => (
             <R key={i} delay={i * 0.1}>
@@ -839,6 +842,7 @@ const Contact = ({ preselectedService = "" }: { preselectedService?: string }) =
                     <ChoiceCard icon="🎬" label="VIDEO MARKETING" desc="Videos that move hearts and drive results." selected={service === "video"} onClick={() => setService("video")} />
                     <ChoiceCard icon="📱" label="SOCIAL MEDIA MARKETING" desc="Revenue-driven social. Partnerships & growth." selected={service === "social"} onClick={() => setService("social")} />
                     <ChoiceCard icon="🗣️" label="UGC & INFLUENCER" desc="Muslim creators. Real influence. Real results." selected={service === "ugc"} onClick={() => setService("ugc")} />
+                    <ChoiceCard icon="🧩" label="SMARTSUITE" desc="AI-powered funnels, agents, sites & portals." selected={service === "smartsuite"} onClick={() => setService("smartsuite")} />
                     <ChoiceCard icon="🤖" label="AI EDUCATION" desc="Practical AI skills for your team." selected={service === "ai"} onClick={() => setService("ai")} />
                   </div>
                 </div>
@@ -1052,7 +1056,7 @@ const Contact = ({ preselectedService = "" }: { preselectedService?: string }) =
                     marginBottom: "20px",
                   }}>YOUR PROJECT SUMMARY</p>
                   {[
-                    { label: "Service", value: service === "brand" ? "Brand Development" : service === "video" ? "Video Marketing" : service === "social" ? "Social Media Marketing" : service === "ugc" ? "UGC & Influencer" : "AI Education" },
+                    { label: "Service", value: service === "brand" ? "Brand Development" : service === "video" ? "Video Marketing" : service === "social" ? "Social Media Marketing" : service === "ugc" ? "UGC & Influencer" : service === "smartsuite" ? "SmartSuite" : "AI Education" },
                     { label: "Stage", value: stage === "starting" ? "Just Starting" : stage === "growing" ? "Growing" : "Rebuilding" },
                     { label: "Timeline", value: timeline === "asap" ? "ASAP" : timeline === "1-3" ? "1-3 Months" : "Flexible" },
                     { label: "Budget", value: budget },
@@ -1125,6 +1129,7 @@ const Footer = ({ setPage }: { setPage: (p: string) => void }) => (
           { id: "video", label: "Video" },
           { id: "social", label: "Social" },
           { id: "ugc", label: "UGC" },
+          { id: "smartsuite", label: "SmartSuite" },
           { id: "ai", label: "AI" },
           { id: "work", label: "Work" },
           { id: "about", label: "About" },
@@ -1255,6 +1260,7 @@ export default function App() {
       {page === "video" && <VideoMarketing setPage={(p: string) => setPageWithService(p, p === "contact" ? "video" : "")} />}
       {page === "social" && <SocialMedia setPage={(p: string) => setPageWithService(p, p === "contact" ? "social" : "")} />}
       {page === "ugc" && <UGC setPage={(p: string) => setPageWithService(p, p === "contact" ? "ugc" : "")} />}
+      {page === "smartsuite" && <SmartSuite setPage={(p: string) => setPageWithService(p, p === "contact" ? "smartsuite" : "")} />}
       {page === "ai" && <AIEducation setPage={(p: string) => setPageWithService(p, p === "contact" ? "ai" : "")} />}
       {page === "work" && <Work setPage={setPage} />}
       {page === "about" && <About setPage={setPage} />}

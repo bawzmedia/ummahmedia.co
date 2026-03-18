@@ -4,40 +4,40 @@ import { GlowOrb } from './DynamicBackgrounds';
 
 const SERVICES = [
   {
-    arabic: 'فيديو',
-    name: 'AI Video Production',
-    desc: 'Cinematic brand films, social reels, and ads — world-class quality at breakthrough speed.',
-    accent: 'gold' as const,
-  },
-  {
     arabic: 'هوية',
     name: 'Brand Development',
-    desc: 'Identity systems that capture your essence. Logo, voice, guidelines — built to last.',
+    desc: 'Full brand build-out — strategy, visuals, content, and systems. Foundation, Signature, or Flagship tiers.',
     accent: 'green' as const,
+  },
+  {
+    arabic: 'فيديو',
+    name: 'Video Marketing',
+    desc: 'Cinematic brand films, short-form content, and event coverage — engineered for every stage of the funnel.',
+    accent: 'gold' as const,
   },
   {
     arabic: 'تواصل',
-    name: 'Social Media',
-    desc: 'Daily content that builds community and drives revenue. Fully managed, all platforms.',
-    accent: 'gold' as const,
-  },
-  {
-    arabic: 'إعلان',
-    name: 'Paid Advertising',
-    desc: 'Data-driven campaigns across Google, Meta, and TikTok. Precise targeting, measurable ROI.',
+    name: 'Social Media Marketing',
+    desc: 'Revenue-driven social media management. Strategy, content, community, and analytics — fully managed.',
     accent: 'green' as const,
   },
   {
-    arabic: 'أتمتة',
-    name: 'AI Automation',
-    desc: 'Lead capture, email sequences, CRM workflows. Systems that run while you sleep.',
+    arabic: 'مؤثر',
+    name: 'UGC & Influencer Agency',
+    desc: 'Muslim creators and UGC content that converts. Real influencers, AI influencers, and campaign management.',
     accent: 'gold' as const,
   },
   {
-    arabic: 'ويب',
-    name: 'Web Design',
-    desc: 'Lightning-fast, conversion-optimized websites. SEO-ready and mobile-first from day one.',
+    arabic: 'ذكي',
+    name: 'SmartSuite',
+    desc: 'AI-powered business systems — Smart Funnel, Smart Agent, Smart Site, Smart Project Media, and Smart Portal.',
     accent: 'green' as const,
+  },
+  {
+    arabic: 'تعليم',
+    name: 'AI Education',
+    desc: 'Courses, workshops, and custom AI tool development. From AI 101 to building your own AI agents.',
+    accent: 'gold' as const,
   },
 ];
 
