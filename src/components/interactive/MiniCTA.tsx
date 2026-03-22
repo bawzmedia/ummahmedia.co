@@ -1,35 +1,35 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 
 interface MiniCTAProps {
+  label: string;            // e.g. "Explore Brand Development"
+  route: string;            // e.g. "/brand-development"
+  secondaryLabel?: string;  // e.g. "Are You a Muslim Creator? Join the Roster"
+  secondaryRoute?: string;
   isVisible: boolean;
-  serviceName: string;
-  serviceHref: string;
-  stats: string[];
-  ctaText?: string;
+  onNavigate: (route: string) => void; // Parent handles navigation + transition
 }
 
 export default function MiniCTA({
+  label,
+  route,
+  secondaryLabel,
+  secondaryRoute,
   isVisible,
-  serviceName,
-  serviceHref,
-  stats,
-  ctaText = 'Explore',
+  onNavigate,
 }: MiniCTAProps) {
-  const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const chevronRef = useRef<SVGSVGElement>(null);
 
-  // Chevron bounce animation (continuous while mounted)
+  // Continuous chevron bounce
   useEffect(() => {
     if (!chevronRef.current) return;
     const ctx = gsap.context(() => {
       gsap.to(chevronRef.current, {
-        y: 5,
+        y: 6,
         repeat: -1,
         yoyo: true,
         duration: 0.85,
@@ -39,7 +39,7 @@ export default function MiniCTA({
     return () => ctx.revert();
   }, []);
 
-  // Slide-in / slide-out driven by isVisible
+  // Entrance / exit driven by isVisible
   useEffect(() => {
     if (!containerRef.current || !cardRef.current) return;
 
@@ -68,65 +68,57 @@ export default function MiniCTA({
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none absolute inset-x-0 bottom-10 flex flex-col items-center gap-3"
+      className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-5"
       style={{ zIndex: 10 }}
       aria-hidden={!isVisible}
     >
-      {/* Main card */}
+      {/* Animated content card */}
       <div
         ref={cardRef}
-        className="flex flex-col items-center gap-4 rounded-2xl border border-white/10 bg-black/50 px-6 py-5 backdrop-blur-md sm:flex-row sm:gap-6"
-        style={{ opacity: 0, visibility: 'hidden', maxWidth: '640px', width: '90vw' }}
+        className="flex flex-col items-center gap-4"
+        style={{ opacity: 0, visibility: 'hidden' }}
       >
-        {/* Service name */}
-        <span className="font-cinzel text-sm font-semibold uppercase tracking-widest text-white sm:text-base">
-          {serviceName}
-        </span>
+        {/* Primary CTA button */}
+        <button
+          onClick={() => onNavigate(route)}
+          tabIndex={isVisible ? 0 : -1}
+          className="rounded-full bg-amber-500 px-8 py-4 font-cinzel text-sm font-bold uppercase tracking-widest text-white shadow-lg transition-colors duration-200 hover:bg-amber-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:text-base"
+        >
+          {label}
+        </button>
 
-        {/* Stats pills */}
-        {stats.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-2 sm:justify-start">
-            {stats.map((stat) => (
-              <span
-                key={stat}
-                className="rounded-full bg-white/10 px-3 py-1 font-raleway text-xs font-light text-white/80"
-              >
-                {stat}
-              </span>
-            ))}
-          </div>
+        {/* Optional secondary CTA */}
+        {secondaryLabel && secondaryRoute && (
+          <button
+            onClick={() => onNavigate(secondaryRoute)}
+            tabIndex={isVisible ? 0 : -1}
+            className="rounded-full border border-white/30 px-6 py-2.5 font-raleway text-xs font-light tracking-widest text-white/80 transition-colors duration-200 hover:border-white/60 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 sm:text-sm"
+          >
+            {secondaryLabel}
+          </button>
         )}
 
-        {/* CTA button */}
-        <button
-          onClick={() => router.push(serviceHref)}
-          className="ml-auto shrink-0 rounded-full bg-white px-6 py-2 font-raleway text-sm font-semibold text-black transition-transform duration-200 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-          tabIndex={isVisible ? 0 : -1}
-        >
-          {ctaText}
-        </button>
-      </div>
-
-      {/* "Continue scrolling" indicator */}
-      <div className="flex flex-col items-center gap-1" aria-hidden="true">
-        <span className="font-raleway text-xs font-light tracking-widest text-white/40">
-          Continue scrolling
-        </span>
-        <svg
-          ref={chevronRef}
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-white/40"
-        >
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
+        {/* Scroll-down indicator */}
+        <div className="mt-2 flex flex-col items-center gap-1.5" aria-hidden="true">
+          <span className="font-raleway text-xs font-light tracking-widest text-neutral-400">
+            or keep scrolling
+          </span>
+          <svg
+            ref={chevronRef}
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-neutral-400"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </div>
       </div>
     </div>
   );
