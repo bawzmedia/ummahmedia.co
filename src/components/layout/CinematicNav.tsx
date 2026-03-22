@@ -144,15 +144,6 @@ export default function CinematicNav() {
             Contact
           </Link>
 
-          {/* CTA */}
-          <a
-            href="https://calendly.com/ummahmedia/strategy-call"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs tracking-[2px] uppercase font-raleway font-semibold text-black bg-white rounded-full px-5 py-2 hover:bg-white/90 transition-colors duration-200"
-          >
-            Book a Call
-          </a>
         </div>
 
         {/* Mobile Hamburger */}
@@ -244,16 +235,6 @@ export default function CinematicNav() {
           >
             Contact
           </Link>
-
-          <a
-            href="https://calendly.com/ummahmedia/strategy-call"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 text-center text-xs tracking-[2px] uppercase font-raleway font-semibold text-black bg-white rounded-full px-5 py-2.5 hover:bg-white/90 transition-colors"
-            onClick={() => setMobileOpen(false)}
-          >
-            Book a Call
-          </a>
         </div>
       </div>
     </nav>
