@@ -64,10 +64,17 @@ export default function CinematicNav() {
         {/* Logo */}
         <Link
           href="/"
-          className="font-cinzel text-white text-sm tracking-[4px] uppercase opacity-90 hover:opacity-100 transition-opacity"
+          className="flex items-center gap-2.5 opacity-90 hover:opacity-100 transition-opacity"
           aria-label="Ummah Media — Home"
         >
-          Ummah Media
+          <img
+            src="/ummah-media-logo-v2.png"
+            alt=""
+            className="h-8 w-8 object-contain"
+          />
+          <span className="font-cinzel text-white text-sm tracking-[4px] uppercase">
+            Ummah Media
+          </span>
         </Link>
 
         {/* Desktop Nav */}
