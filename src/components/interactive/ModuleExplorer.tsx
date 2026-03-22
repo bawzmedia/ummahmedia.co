@@ -3,44 +3,52 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
-interface Module {
+export interface ModuleTile {
   id: string;
-  name: string;
-  tagline: string;
+  title: string;
   description: string;
   deliverables: string[];
-  icon: string;
 }
 
-interface ModuleExplorerProps {
+export interface ModuleExplorerProps {
+  modules: ModuleTile[];
   isVisible: boolean;
-  modules: Module[];
 }
 
-export default function ModuleExplorer({ isVisible, modules }: ModuleExplorerProps) {
+export default function ModuleExplorer({ modules, isVisible }: ModuleExplorerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
-  const [activeId, setActiveId] = useState(modules[0]?.id ?? '');
-
-  const activeModule = modules.find((m) => m.id === activeId) ?? modules[0];
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   // Entrance / exit animation driven by isVisible
   useEffect(() => {
-    if (!containerRef.current || !panelRef.current) return;
+    if (!containerRef.current || !gridRef.current) return;
+
+    const tiles = gridRef.current.querySelectorAll<HTMLElement>('[data-tile]');
 
     if (isVisible) {
       gsap.set(containerRef.current, { pointerEvents: 'auto' });
       gsap.fromTo(
-        panelRef.current,
-        { autoAlpha: 0, y: 32 },
-        { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power2.out' }
+        tiles,
+        { autoAlpha: 0, y: 28, scale: 0.96 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: 'power2.out',
+          stagger: 0.1,
+        }
       );
     } else {
-      gsap.to(panelRef.current, {
+      setExpandedId(null);
+      gsap.to(tiles, {
         autoAlpha: 0,
         y: 20,
-        duration: 0.3,
+        scale: 0.96,
+        duration: 0.25,
         ease: 'power1.in',
+        stagger: 0.05,
         onComplete: () => {
           if (containerRef.current) {
             gsap.set(containerRef.current, { pointerEvents: 'none' });
@@ -50,6 +58,10 @@ export default function ModuleExplorer({ isVisible, modules }: ModuleExplorerPro
     }
   }, [isVisible]);
 
+  const handleToggle = (id: string) => {
+    setExpandedId((prev) => (prev === id ? null : id));
+  };
+
   return (
     <div
       ref={containerRef}
@@ -58,85 +70,86 @@ export default function ModuleExplorer({ isVisible, modules }: ModuleExplorerPro
       aria-hidden={!isVisible}
     >
       <div
-        ref={panelRef}
-        className="flex w-full max-w-[800px] flex-col gap-4 overflow-y-auto md:flex-row md:gap-0"
-        style={{ maxHeight: 'calc(100vh - 6rem)', opacity: 0, visibility: 'hidden' }}
+        className="w-full max-w-5xl overflow-y-auto"
+        style={{ maxHeight: 'calc(100vh - 6rem)' }}
       >
-        {/* Tab list — left side on desktop, top on mobile */}
         <div
-          className="flex shrink-0 flex-col md:w-48 md:border-r md:border-white/10"
-          role="tablist"
-          aria-label="SmartSuite modules"
+          ref={gridRef}
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
         >
           {modules.map((mod) => {
-            const isActive = mod.id === activeId;
+            const isExpanded = expandedId === mod.id;
             return (
-              <button
+              <div
                 key={mod.id}
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`module-panel-${mod.id}`}
-                id={`module-tab-${mod.id}`}
-                tabIndex={isVisible ? (isActive ? 0 : -1) : -1}
-                onClick={() => setActiveId(mod.id)}
-                className={`border px-4 py-3 text-left transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 ${
-                  isActive
-                    ? 'border-white/20 bg-white/10 text-white'
-                    : 'border-white/10 bg-black/30 text-white/60 hover:bg-black/50 hover:text-white/80'
-                } w-full backdrop-blur-sm`}
+                data-tile
+                className={[
+                  'cursor-pointer rounded-xl border bg-white/5 backdrop-blur-md transition-all duration-300',
+                  isExpanded
+                    ? 'border-amber-500/60 bg-white/10'
+                    : 'border-white/10 hover:border-white/25',
+                ].join(' ')}
+                style={{ opacity: 0, visibility: 'hidden' }}
+                onClick={() => handleToggle(mod.id)}
+                role="button"
+                tabIndex={isVisible ? 0 : -1}
+                aria-expanded={isExpanded}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleToggle(mod.id);
+                  }
+                }}
               >
-                <span className="mr-2" aria-hidden="true">
-                  {mod.icon}
-                </span>
-                <span className="font-raleway text-sm font-medium">
-                  {mod.name}
-                </span>
-              </button>
+                {/* Tile header — always visible */}
+                <div className="flex items-center justify-between gap-3 p-5">
+                  <h3 className="font-cinzel text-sm font-bold uppercase tracking-wide text-white">
+                    {mod.title}
+                  </h3>
+                  <span
+                    className="shrink-0 font-raleway text-xl font-light leading-none text-white/50 transition-transform duration-300"
+                    aria-hidden="true"
+                    style={{ transform: isExpanded ? 'rotate(45deg)' : 'rotate(0deg)' }}
+                  >
+                    +
+                  </span>
+                </div>
+
+                {/* Expanded content */}
+                <div
+                  className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+                  style={{ gridTemplateRows: isExpanded ? '1fr' : '0fr' }}
+                >
+                  <div className="overflow-hidden">
+                    <div className="border-t border-white/10 px-5 pb-5 pt-4">
+                      <p className="mb-3 font-raleway text-sm leading-relaxed text-neutral-300">
+                        {mod.description}
+                      </p>
+                      {mod.deliverables.length > 0 && (
+                        <ul className="space-y-1.5">
+                          {mod.deliverables.map((d, i) => (
+                            <li
+                              key={i}
+                              className="flex items-start gap-2 font-raleway text-xs text-neutral-400"
+                            >
+                              <span
+                                className="mt-0.5 shrink-0 text-amber-500"
+                                aria-hidden="true"
+                              >
+                                ›
+                              </span>
+                              {d}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             );
           })}
         </div>
-
-        {/* Detail panel — right side on desktop, bottom on mobile */}
-        {activeModule && (
-          <div
-            id={`module-panel-${activeModule.id}`}
-            role="tabpanel"
-            aria-labelledby={`module-tab-${activeModule.id}`}
-            className="flex-1 rounded-b-xl border border-white/10 bg-black/40 p-6 backdrop-blur-sm md:rounded-none md:rounded-r-xl"
-          >
-            {/* Module name */}
-            <h3 className="mb-1 font-cinzel text-lg font-bold uppercase tracking-widest text-white">
-              {activeModule.name}
-            </h3>
-
-            {/* Tagline */}
-            <p className="mb-3 font-raleway text-xs font-light uppercase tracking-widest text-amber-400">
-              {activeModule.tagline}
-            </p>
-
-            {/* Description */}
-            <p className="mb-4 font-raleway text-sm leading-relaxed text-white/70">
-              {activeModule.description}
-            </p>
-
-            {/* Deliverables */}
-            {activeModule.deliverables.length > 0 && (
-              <ul className="space-y-1.5">
-                {activeModule.deliverables.map((d, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2 font-raleway text-sm text-white/60"
-                  >
-                    <span className="mt-0.5 shrink-0 text-amber-500" aria-hidden="true">
-                      &#8250;
-                    </span>
-                    {d}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
