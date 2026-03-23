@@ -14,7 +14,6 @@ const SERVICES = [
 
 export default function CinematicNav() {
   const [scrolled, setScrolled] = useState(false);
-  const [lightMode, setLightMode] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
@@ -25,18 +24,6 @@ export default function CinematicNav() {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Detect hero overlay to switch to light mode
-  useEffect(() => {
-    const check = () => {
-      const hero = document.getElementById('hero-intro');
-      setLightMode(!!hero);
-    };
-    check();
-    const observer = new MutationObserver(check);
-    observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
   }, []);
 
   // Close dropdown on outside click
@@ -60,20 +47,16 @@ export default function CinematicNav() {
     closeTimer.current = setTimeout(() => setServicesOpen(false), 150);
   }, []);
 
-  const linkClass = lightMode
-    ? 'text-[#666] hover:text-[#c9a961] text-xs tracking-[2px] uppercase transition-colors duration-200 font-raleway'
-    : 'text-white/80 hover:text-white text-xs tracking-[2px] uppercase transition-colors duration-200 font-raleway';
+  const linkClass =
+    'text-white/80 hover:text-white text-xs tracking-[2px] uppercase transition-colors duration-200 font-raleway';
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-[200] w-full transition-all duration-500"
+      className="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500"
       style={{
-        background: lightMode
-          ? '#faf8f3'
-          : scrolled ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0,0)',
-        backdropFilter: lightMode ? 'none' : scrolled ? 'blur(12px)' : 'blur(0px)',
-        WebkitBackdropFilter: lightMode ? 'none' : scrolled ? 'blur(12px)' : 'blur(0px)',
-        borderBottom: lightMode ? '1px solid rgba(201,169,97,0.15)' : 'none',
+        background: scrolled ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0,0)',
+        backdropFilter: scrolled ? 'blur(12px)' : 'blur(0px)',
+        WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'blur(0px)',
       }}
       aria-label="Main navigation"
     >
@@ -89,13 +72,13 @@ export default function CinematicNav() {
             alt=""
             className="h-8 w-8 object-contain"
           />
-          <span className={`font-cinzel text-sm tracking-[4px] uppercase ${lightMode ? 'text-[#1a1a1a]' : 'text-white'}`}>
+          <span className="font-cinzel text-white text-sm tracking-[4px] uppercase">
             Ummah Media
           </span>
         </Link>
 
         {/* Bismillah — centered between logo and nav */}
-        <span className={`hidden md:block text-sm font-normal font-amiri ${lightMode ? 'text-[#c9a961]' : 'text-white/50'}`} dir="rtl">
+        <span className="hidden md:block text-white/50 text-sm font-normal font-amiri" dir="rtl">
           بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
         </span>
 
@@ -130,11 +113,7 @@ export default function CinematicNav() {
 
             {/* Dropdown Menu */}
             <div
-              className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-lg py-2 shadow-2xl transition-all duration-200 ${
-                lightMode
-                  ? 'border border-[#c9a961]/20 bg-[#faf8f3] backdrop-blur-none'
-                  : 'border border-white/10 bg-black/80 backdrop-blur-xl'
-              } ${
+              className={`absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-lg border border-white/10 bg-black/80 backdrop-blur-xl py-2 shadow-2xl transition-all duration-200 ${
                 servicesOpen
                   ? 'opacity-100 translate-y-0 pointer-events-auto'
                   : 'opacity-0 -translate-y-2 pointer-events-none'
@@ -144,11 +123,7 @@ export default function CinematicNav() {
                 <Link
                   key={service.href}
                   href={service.href}
-                  className={`block px-4 py-2.5 text-xs tracking-[1.5px] uppercase transition-colors duration-150 font-raleway ${
-                    lightMode
-                      ? 'text-[#666] hover:text-[#c9a961] hover:bg-[#c9a961]/5'
-                      : 'text-white/60 hover:text-white hover:bg-white/5'
-                  }`}
+                  className="block px-4 py-2.5 text-xs tracking-[1.5px] uppercase text-white/60 hover:text-white hover:bg-white/5 transition-colors duration-150 font-raleway"
                   onClick={() => setServicesOpen(false)}
                 >
                   {service.label}
