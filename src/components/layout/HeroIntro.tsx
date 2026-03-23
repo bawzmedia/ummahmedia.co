@@ -104,6 +104,7 @@ export default function HeroIntro({ onComplete }: HeroIntroProps) {
 
   return (
     <div
+      id="hero-intro"
       ref={containerRef}
       className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
       style={{
@@ -176,13 +177,13 @@ export default function HeroIntro({ onComplete }: HeroIntroProps) {
         <div ref={ctaRef} className="mt-8 flex gap-3 justify-center flex-wrap opacity-0">
           <button
             onClick={handleTransition}
-            className="font-cinzel text-xs tracking-[3px] uppercase px-8 py-4 bg-[#1a5e51] text-white border-none cursor-pointer transition-all duration-300 hover:bg-[#164e43]"
+            className="font-cinzel text-xs tracking-[3px] uppercase px-8 py-4 bg-[#c9a961] text-white border border-[#c9a961] cursor-pointer transition-all duration-300 hover:bg-[#b8944f]"
           >
             START A PROJECT
           </button>
           <button
             onClick={handleTransition}
-            className="font-cinzel text-xs tracking-[3px] uppercase px-8 py-4 bg-transparent text-[#1a1a1a] border border-[#1a1a1a] cursor-pointer transition-all duration-300 hover:bg-[#1a1a1a] hover:text-white"
+            className="font-cinzel text-xs tracking-[3px] uppercase px-8 py-4 bg-transparent text-[#c9a961] border border-[#c9a961] cursor-pointer transition-all duration-300 hover:bg-[#c9a961] hover:text-white"
           >
             SEE OUR WORK
           </button>
