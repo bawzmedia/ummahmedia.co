@@ -21,3 +21,10 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Astro
+.vercel
+.astro
+
+# Backup (not needed in repo)
+src-react-backup

@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav";
+import Contact from "../components/Contact";
+import Footer from "../components/Footer";
+import Grain from "../components/Grain";
+
+const serviceParam = Astro.url.searchParams.get("service") || "";
+---
+
+<BaseLayout title="Contact Us — Ummah Media" description="Start your project with Ummah Media. Book a consultation for brand development, video marketing, social media, and more.">
+  <Grain client:load />
+  <Nav currentPath="/contact" client:load />
+  <Contact preselectedService={serviceParam} client:load />
+  <Footer client:load />
+</BaseLayout>

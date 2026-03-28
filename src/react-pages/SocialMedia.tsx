@@ -1,7 +1,7 @@
 import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA } from "../shared";
 import { InsightMoneyIcon, InsightTargetIcon, InsightChartIcon } from "../icons";
 
-const SocialMedia = ({ setPage }: { setPage: (p: string) => void }) => (
+const SocialMedia = () => (
   <div>
     {/* ── HERO ── */}
     <ServiceHero
@@ -154,7 +154,7 @@ const SocialMedia = ({ setPage }: { setPage: (p: string) => void }) => (
       highlight="PAY."
       subtitle="Stop posting for the sake of posting. Start building a social media system that generates real revenue and real partnerships."
       buttonText="START YOUR PROJECT"
-      onButtonClick={() => setPage("contact")}
+      buttonHref="/contact?service=social"
     />
   </div>
 );

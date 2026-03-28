@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav";
+import VideoMarketing from "../../react-pages/VideoMarketing";
+import Footer from "../../components/Footer";
+import Grain from "../../components/Grain";
+---
+
+<BaseLayout title="Video Marketing — Ummah Media" description="Cinematic storytelling engineered for impact. Short-form, brand films, event coverage, and full video strategy.">
+  <Grain client:load />
+  <Nav currentPath="/services/video-marketing" client:load />
+  <VideoMarketing client:load />
+  <Footer client:load />
+</BaseLayout>

@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav";
+import About from "../components/About";
+import Footer from "../components/Footer";
+import Grain from "../components/Grain";
+---
+
+<BaseLayout title="About Us — Ummah Media" description="Edmonton's Muslim-owned media company. Building community through professional brand development, video, and social media.">
+  <Grain client:load />
+  <Nav currentPath="/about" client:load />
+  <About client:only="react" />
+  <Footer client:load />
+</BaseLayout>

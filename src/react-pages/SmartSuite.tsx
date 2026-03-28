@@ -72,7 +72,7 @@ const ModuleCard = ({ icon, name, description, deliverables }: {
   );
 };
 
-const SmartSuite = ({ setPage }: { setPage: (p: string) => void }) => (
+const SmartSuite = () => (
   <div>
     {/* ── HERO ── */}
     <ServiceHero
@@ -233,7 +233,7 @@ const SmartSuite = ({ setPage }: { setPage: (p: string) => void }) => (
     </section>
 
     {/* ── CUSTOM BUILD ── */}
-    <CustomBuildSection onContact={() => setPage("contact")} />
+    <CustomBuildSection contactHref="/contact?service=smartsuite" />
 
     {/* ── CTA ── */}
     <BottomCTA
@@ -241,7 +241,7 @@ const SmartSuite = ({ setPage }: { setPage: (p: string) => void }) => (
       highlight="SMARTSUITE."
       subtitle="Pick your modules. We'll build the system. Your business runs smarter from day one."
       buttonText="GET STARTED"
-      onButtonClick={() => setPage("contact")}
+      buttonHref="/contact?service=smartsuite"
     />
   </div>
 );

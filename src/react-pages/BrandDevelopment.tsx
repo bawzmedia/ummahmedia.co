@@ -1,7 +1,7 @@
 import { C, R, BigText, Sub, Tag, Line, CTA, ImgBlock, VideoBlock, ServiceHero, Definition, SectionHead, StatBar, StepItem, FeatureCard, Insight, BottomCTA } from "../shared";
 import { InsightKeyIcon, InsightChartIcon, InsightTargetIcon } from "../icons";
 
-const BrandDevelopment = ({ setPage }: { setPage: (p: string) => void }) => (
+const BrandDevelopment = () => (
   <div>
     {/* ── HERO ── */}
     <ServiceHero
@@ -183,7 +183,7 @@ const BrandDevelopment = ({ setPage }: { setPage: (p: string) => void }) => (
       highlight="BRAND?"
       subtitle="Book a consultation. We'll audit your brand, build your package, and handle the execution — so you can focus on your business."
       buttonText="BOOK A CONSULTATION"
-      onButtonClick={() => setPage("contact")}
+      buttonHref="/contact?service=brand"
     />
   </div>
 );

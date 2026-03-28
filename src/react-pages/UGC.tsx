@@ -49,7 +49,7 @@ const FormatCard = ({ icon, title, description, bestFor }: {
   );
 };
 
-const UGC = ({ setPage }: { setPage: (p: string) => void }) => (
+const UGC = () => (
   <div>
     {/* ── HERO ── */}
     <ServiceHero
@@ -226,7 +226,7 @@ const UGC = ({ setPage }: { setPage: (p: string) => void }) => (
         </Sub>
       </R>
       <R delay={0.2}>
-        <CTA onClick={() => setPage("contact")}>JOIN THE ROSTER</CTA>
+        <CTA href="/contact?service=ugc">JOIN THE ROSTER</CTA>
       </R>
     </section>
 
@@ -236,7 +236,7 @@ const UGC = ({ setPage }: { setPage: (p: string) => void }) => (
       highlight="SELL."
       subtitle="UGC content and influencer partnerships — the most trusted form of marketing, powered by the Ummah."
       buttonText="GET STARTED"
-      onButtonClick={() => setPage("contact")}
+      buttonHref="/contact?service=ugc"
     />
   </div>
 );

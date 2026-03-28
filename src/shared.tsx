@@ -191,23 +191,35 @@ export const Line = ({ w = "60px" }: { w?: string }) => (
 );
 
 // ─── CTA Button ───
-export const CTA = ({ children, onClick, outline = false }: { children: React.ReactNode; onClick: () => void; outline?: boolean }) => {
+export const CTA = ({ children, onClick, href, outline = false }: { children: React.ReactNode; onClick?: () => void; href?: string; outline?: boolean }) => {
   const [h, setH] = useState(false);
+  const sharedStyle: React.CSSProperties = {
+    background: outline ? "transparent" : h ? "#B8945A" : C.gold,
+    color: outline ? C.gold : C.white,
+    border: outline ? `2px solid ${C.gold}` : "none",
+    fontFamily: "'Bebas Neue', sans-serif",
+    fontSize: "clamp(14px, 3vw, 16px)", letterSpacing: "3px",
+    padding: "14px 36px", cursor: "pointer",
+    transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
+    transform: h ? "translateY(-3px)" : "translateY(0)",
+    boxShadow: h && !outline ? "0 12px 28px rgba(201,169,97,0.3)" : "0 2px 8px rgba(201,169,97,0.08)",
+    whiteSpace: "nowrap",
+    textDecoration: "none", display: "inline-block",
+  };
+  if (href) {
+    return (
+      <a href={href}
+        onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
+        style={sharedStyle}
+      >
+        {children}
+      </a>
+    );
+  }
   return (
     <button onClick={onClick}
       onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)}
-      style={{
-        background: outline ? "transparent" : h ? "#B8945A" : C.gold,
-        color: outline ? C.gold : C.white,
-        border: outline ? `2px solid ${C.gold}` : "none",
-        fontFamily: "'Bebas Neue', sans-serif",
-        fontSize: "clamp(14px, 3vw, 16px)", letterSpacing: "3px",
-        padding: "14px 36px", cursor: "pointer",
-        transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
-        transform: h ? "translateY(-3px)" : "translateY(0)",
-        boxShadow: h && !outline ? "0 12px 28px rgba(201,169,97,0.3)" : "0 2px 8px rgba(201,169,97,0.08)",
-        whiteSpace: "nowrap",
-      }}
+      style={sharedStyle}
     >
       {children}
     </button>
@@ -384,8 +396,8 @@ export const Insight = ({ emoji, text }: { emoji: React.ReactNode; text: string 
 );
 
 // ─── Bottom CTA section (standardized) ───
-export const BottomCTA = ({ title, highlight, subtitle, buttonText, onButtonClick }: {
-  title: string; highlight: string; subtitle: string; buttonText: string; onButtonClick: () => void;
+export const BottomCTA = ({ title, highlight, subtitle, buttonText, onButtonClick, buttonHref }: {
+  title: string; highlight: string; subtitle: string; buttonText: string; onButtonClick?: () => void; buttonHref?: string;
 }) => {
   return (
     <section style={{
@@ -404,7 +416,7 @@ export const BottomCTA = ({ title, highlight, subtitle, buttonText, onButtonClic
         <Sub style={{ margin: "0 auto 36px", textAlign: "center", maxWidth: "480px" }}>{subtitle}</Sub>
       </R>
       <R delay={0.25}>
-        <CTA onClick={onButtonClick}>{buttonText}</CTA>
+        <CTA onClick={onButtonClick} href={buttonHref}>{buttonText}</CTA>
       </R>
     </section>
   );
@@ -521,7 +533,7 @@ export const AddOnsBar = ({ addOns }: { addOns: string[] }) => (
 );
 
 // ─── Custom Build section (shared across all service pages) ───
-export const CustomBuildSection = ({ onContact }: { onContact: () => void }) => {
+export const CustomBuildSection = ({ onContact, contactHref }: { onContact?: () => void; contactHref?: string }) => {
   return (
   <section style={{
     background: `linear-gradient(180deg, ${C.cream}, ${C.greenLight}, ${C.cream})`,
@@ -541,7 +553,7 @@ export const CustomBuildSection = ({ onContact }: { onContact: () => void }) => 
       </Sub>
     </R>
     <R delay={0.2}>
-      <CTA onClick={onContact}>BUILD YOUR CUSTOM PACKAGE</CTA>
+      <CTA onClick={onContact} href={contactHref}>BUILD YOUR CUSTOM PACKAGE</CTA>
     </R>
   </section>
   );

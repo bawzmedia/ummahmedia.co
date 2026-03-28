@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav";
+import Work from "../components/Work";
+import Footer from "../components/Footer";
+import Grain from "../components/Grain";
+---
+
+<BaseLayout title="Our Work — Ummah Media" description="See our portfolio of brand development, video marketing, and social media work for Muslim businesses.">
+  <Grain client:load />
+  <Nav currentPath="/work" client:load />
+  <Work client:load />
+  <Footer client:load />
+</BaseLayout>

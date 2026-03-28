@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav";
+import BrandDevelopment from "../../react-pages/BrandDevelopment";
+import Footer from "../../components/Footer";
+import Grain from "../../components/Grain";
+---
+
+<BaseLayout title="Brand Development — Ummah Media" description="Strategic consulting paired with custom content creation. We audit your brand, build a custom plan, and handle the execution.">
+  <Grain client:load />
+  <Nav currentPath="/services/brand-development" client:load />
+  <BrandDevelopment client:load />
+  <Footer client:load />
+</BaseLayout>

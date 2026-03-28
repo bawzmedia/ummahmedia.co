@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav";
+import SmartSuite from "../../react-pages/SmartSuite";
+import Footer from "../../components/Footer";
+import Grain from "../../components/Grain";
+---
+
+<BaseLayout title="SmartSuite — Ummah Media" description="AI-powered funnels, agents, websites, media, and portals. Modular digital solutions for modern Muslim businesses.">
+  <Grain client:load />
+  <Nav currentPath="/services/smartsuite" client:load />
+  <SmartSuite client:load />
+  <Footer client:load />
+</BaseLayout>

@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav";
+import UGC from "../../react-pages/UGC";
+import Footer from "../../components/Footer";
+import Grain from "../../components/Grain";
+---
+
+<BaseLayout title="UGC & Influencer Agency — Ummah Media" description="Muslim creators. Authentic content. Real influence. UGC production and influencer marketing for halal brands.">
+  <Grain client:load />
+  <Nav currentPath="/services/ugc-influencer" client:load />
+  <UGC client:load />
+  <Footer client:load />
+</BaseLayout>

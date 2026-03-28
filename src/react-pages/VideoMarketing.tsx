@@ -58,7 +58,7 @@ const FunnelStage = ({ stage, label, color, formats, goal }: {
   );
 };
 
-const VideoMarketing = ({ setPage }: { setPage: (p: string) => void }) => (
+const VideoMarketing = () => (
   <div>
     {/* ── HERO ── */}
     <ServiceHero
@@ -241,7 +241,7 @@ const VideoMarketing = ({ setPage }: { setPage: (p: string) => void }) => (
       highlight="STORY?"
       subtitle="Let's create video content engineered for impact — from the first frame to the final conversion."
       buttonText="START YOUR PROJECT"
-      onButtonClick={() => setPage("contact")}
+      buttonHref="/contact?service=video"
     />
   </div>
 );

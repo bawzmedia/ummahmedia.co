@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav";
+import AIEducation from "../../react-pages/AIEducation";
+import Footer from "../../components/Footer";
+import Grain from "../../components/Grain";
+---
+
+<BaseLayout title="AI Education — Ummah Media" description="Empowering the Ummah with practical AI skills. Workshops, courses, and hands-on training for Muslim professionals.">
+  <Grain client:load />
+  <Nav currentPath="/services/ai-education" client:load />
+  <AIEducation client:load />
+  <Footer client:load />
+</BaseLayout>

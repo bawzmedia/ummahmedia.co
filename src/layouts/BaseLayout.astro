@@ -1,0 +1,86 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Ummah Media — Crafting Muslim Excellence", description = "Edmonton's go-to media company for Muslim businesses. Brand development, video marketing, social media, UGC & influencer, SmartSuite, and AI education." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="/og-image.png" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <slot />
+
+  <style is:global>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
+    body { overflow-x: hidden; background: #FAF8F3; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    ::selection { background: rgba(201,169,97,0.3); color: #2C3E37; }
+    input, textarea { font-size: 16px !important; }
+    input:focus, textarea:focus { border-color: #C9A961 !important; }
+    img { max-width: 100%; height: auto; -webkit-user-drag: none; user-select: none; pointer-events: none; }
+    body { -webkit-user-select: none; -moz-user-select: none; user-select: none; }
+    input, textarea { -webkit-user-select: text; -moz-user-select: text; user-select: text; pointer-events: auto; }
+    button { -webkit-tap-highlight-color: transparent; }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 4px; }
+    .grid-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: 4px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .grid-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 48px; align-items: center; }
+    .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4px; }
+    .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 4px; }
+    .grid-cards-sm { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 4px; }
+    .grid-events { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4px; }
+    .grid-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    @media (max-width: 768px) {
+      .dsk-nav { display: none !important; }
+      .mob-btn { display: block !important; }
+      .grid-2-1, .grid-1-2, .grid-3, .grid-2 { grid-template-columns: 1fr !important; }
+      .grid-split { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .grid-services { grid-template-columns: 1fr !important; }
+      .grid-cards { grid-template-columns: 1fr !important; }
+      .grid-cards-sm { grid-template-columns: 1fr !important; }
+      .grid-events { grid-template-columns: 1fr !important; }
+      .grid-choices { grid-template-columns: 1fr !important; }
+      .mob-pad { padding-left: 16px !important; padding-right: 16px !important; }
+      .nav-logo { height: 44px !important; width: 44px !important; }
+      .nav-brand { flex-direction: column !important; gap: 4px !important; min-width: auto !important; align-items: center !important; }
+      .nav-brand-text { display: none !important; }
+      .nav-bismillah { position: static !important; transform: none !important; text-align: center !important; flex: 1 !important; }
+      .nav-bismillah span { font-size: 14px !important; }
+    }
+
+    @media (min-width: 769px) {
+      .mob-menu { display: none !important; }
+    }
+  </style>
+</body>
+</html>

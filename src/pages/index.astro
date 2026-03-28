@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav";
+import Home from "../components/Home";
+import Footer from "../components/Footer";
+import Grain from "../components/Grain";
+---
+
+<BaseLayout>
+  <Grain client:load />
+  <Nav currentPath="/" client:load />
+  <Home client:load />
+  <Footer client:load />
+</BaseLayout>

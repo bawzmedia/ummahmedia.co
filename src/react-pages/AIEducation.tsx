@@ -3,8 +3,8 @@ import { InsightLightbulbIcon, InsightPuzzleIcon } from "../icons";
 import { useState } from "react";
 
 // ─── Session card (upcoming events) ───
-const SessionCard = ({ title, date, desc, onRegister }: {
-  title: string; date: string; desc: string; onRegister: () => void;
+const SessionCard = ({ title, date, desc, registerHref }: {
+  title: string; date: string; desc: string; registerHref?: string;
 }) => {
   const [h, setH] = useState(false);
   return (
@@ -43,7 +43,7 @@ const SessionCard = ({ title, date, desc, onRegister }: {
         {desc}
       </p>
       <div style={{ marginTop: "24px" }}>
-        <CTA onClick={onRegister} outline>REGISTER INTEREST</CTA>
+        <CTA href={registerHref} outline>REGISTER INTEREST</CTA>
       </div>
     </div>
   );
@@ -102,7 +102,7 @@ const ToolCard = ({ category, tools, description }: {
   );
 };
 
-const AIEducation = ({ setPage }: { setPage: (p: string) => void }) => (
+const AIEducation = () => (
   <div>
     {/* ── HERO ── */}
     <ServiceHero
@@ -294,7 +294,7 @@ const AIEducation = ({ setPage }: { setPage: (p: string) => void }) => (
             { title: "AI ETHICS & ISLAM", date: "Coming Soon — Edmonton", desc: "A deep discussion on navigating AI responsibly through an Islamic framework. Bias, privacy, and principled adoption." },
           ].map((event, i) => (
             <R key={i} delay={i * 0.1}>
-              <SessionCard {...event} onRegister={() => setPage("contact")} />
+              <SessionCard {...event} registerHref="/contact?service=ai" />
             </R>
           ))}
         </div>
@@ -302,7 +302,7 @@ const AIEducation = ({ setPage }: { setPage: (p: string) => void }) => (
     </section>
 
     {/* ── CUSTOM BUILD ── */}
-    <CustomBuildSection onContact={() => setPage("contact")} />
+    <CustomBuildSection contactHref="/contact?service=ai" />
 
     {/* ── CTA ── */}
     <BottomCTA
@@ -310,7 +310,7 @@ const AIEducation = ({ setPage }: { setPage: (p: string) => void }) => (
       highlight="REVOLUTION."
       subtitle="Don't let the Ummah fall behind. Equip yourself with the skills to lead in the age of AI — practically, ethically, and confidently."
       buttonText="REGISTER YOUR INTEREST"
-      onButtonClick={() => setPage("contact")}
+      buttonHref="/contact?service=ai"
     />
   </div>
 );

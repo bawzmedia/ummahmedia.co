@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav";
+import SocialMedia from "../../react-pages/SocialMedia";
+import Footer from "../../components/Footer";
+import Grain from "../../components/Grain";
+---
+
+<BaseLayout title="Social Media Marketing — Ummah Media" description="Revenue-driven social media management. Partnership-focused strategy, content creation, and growth for Muslim businesses.">
+  <Grain client:load />
+  <Nav currentPath="/services/social-media" client:load />
+  <SocialMedia client:load />
+  <Footer client:load />
+</BaseLayout>
